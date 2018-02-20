@@ -95,7 +95,10 @@ def onReleaseHandler(event):
 def notifyWebHooker(input_number, event):
     url = INPUT_WEBHOOK + '?device_id=' + DEVICE_ID + '&input=' + \
         str(input_number) + '&event=' + event
-    r = requests.get(url)
+    try:
+        requests.get(url)
+    except IOError as err:
+        print ("Fail on notifying webhook {0} - {1}".format(url, err))
 
 
 '''
