@@ -1,6 +1,6 @@
 # piface-digital-web-api
 
-A simple web interface to controll your [PiFace Digital](http://www.piface.org.uk/products/piface_digital/) inputs and outputs written in Python using [Flask](https://github.com/pallets/flask).
+A simple web interface to control your [PiFace Digital](http://www.piface.org.uk/products/piface_digital/) inputs and outputs written in Python using [Flask](https://github.com/pallets/flask).
 
 ## Setup
 ```
