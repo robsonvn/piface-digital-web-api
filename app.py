@@ -1,5 +1,5 @@
 import pifacedigitalio
-import requests
+from requests import Session, Request
 from flask import Flask, jsonify, abort
 from time import sleep
 from os import environ
@@ -83,22 +83,27 @@ def getOutputsState():
 
 
 def onPressHandler(event):
+    print("{0} - {1} is now off".format(str(datetime.now()), event.pin_num))
     if INPUT_WEBHOOK:
         notifyWebHooker(event.pin_num, 'on')
 
 
 def onReleaseHandler(event):
+    print("{0} - {1} is now off".format(str(datetime.now()), event.pin_num))
     if INPUT_WEBHOOK:
         notifyWebHooker(event.pin_num, 'off')
 
 
 def notifyWebHooker(input_number, event):
-    url = INPUT_WEBHOOK + '?device_id=' + DEVICE_ID + '&input=' + \
-        str(input_number) + '&event=' + event
+    payload = {'device_id': DEVICE_ID, 'input': input_number, 'event': event}
+    s = Session()
+    req = Request('GET', INPUT_WEBHOOK, params=payload).prepare()
     try:
-        requests.get(url)
+        res = s.send(req)
+        print("{0} has been notified ({1}): {2}".format(
+            req.url, res.status_code, res.content))
     except IOError as err:
-        print ("Fail on notifying webhook {0} - {1}".format(url, err))
+        print("Fail on notifying webhook {0} - {1}".format(req.url, err))
 
 
 '''
