@@ -83,13 +83,13 @@ def getOutputsState():
 
 
 def onPressHandler(event):
-    print("{0} - {1} is now off".format(str(datetime.now()), event.pin_num))
+    print("{0} - Input {1} is now on".format(str(datetime.now()), event.pin_num))
     if INPUT_WEBHOOK:
         notifyWebHooker(event.pin_num, 'on')
 
 
 def onReleaseHandler(event):
-    print("{0} - {1} is now off".format(str(datetime.now()), event.pin_num))
+    print("{0} - Input {1} is now off".format(str(datetime.now()), event.pin_num))
     if INPUT_WEBHOOK:
         notifyWebHooker(event.pin_num, 'off')
 
@@ -100,10 +100,10 @@ def notifyWebHooker(input_number, event):
     req = Request('GET', INPUT_WEBHOOK, params=payload).prepare()
     try:
         res = s.send(req)
-        print("{0} has been notified ({1}): {2}".format(
+        print("Webhook has been notified at: {0}\nResponse: ({1}): {2}".format(
             req.url, res.status_code, res.content))
     except IOError as err:
-        print("Fail on notifying webhook {0} - {1}".format(req.url, err))
+        print("Webhook request failed {0}\nError:{1}".format(req.url, err))
 
 
 '''
