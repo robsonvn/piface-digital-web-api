@@ -1,5 +1,7 @@
 import pifacedigitalio
-import logging, logging.config, yaml
+import logging
+import logging.config
+import yaml
 from requests import Session, Request
 from flask import Flask, jsonify, abort
 from time import sleep
@@ -107,7 +109,8 @@ def notifyWebHooker(input_number, event):
         logging.info("Webhook has been notified at: {0}\nResponse: ({1}): {2}".format(
             req.url, res.status_code, res.content))
     except IOError as err:
-        logging.error("Webhook request failed {0}\nError:{1}".format(req.url, err))
+        logging.error(
+            "Webhook request failed {0}\nError:{1}".format(req.url, err))
 
 
 '''

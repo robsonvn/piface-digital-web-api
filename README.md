@@ -108,6 +108,12 @@ curl -X GET http://10.0.0.200:3030//webhooker/raspberry/?device_id=10.0.0.77&inp
 * **NUMBER_OF_OUTPUTS** the number of outputs to be controlled (default: 8)
 * **INPUT_WEBHOOK** the URL to be requested when an input state changes
 
+## Logging
+
+You can setup your logging settings in the logging.conf file.
+
+*Read more about [Python Logging]*(https://docs.python.org/3/howto/logging.html)
+
 ## Limitations
 
 * There is no API guard.
