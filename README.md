@@ -112,7 +112,7 @@ curl -X GET http://10.0.0.200:3030//webhooker/raspberry/?device_id=10.0.0.77&inp
 
 You can setup your logging settings in the logging.conf file.
 
-*Read more about [Python Logging]*(https://docs.python.org/3/howto/logging.html)
+*Read more about [Python Logging](https://docs.python.org/3/howto/logging.html)*
 
 ## Limitations
 
