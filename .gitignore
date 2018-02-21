@@ -1,2 +1,4 @@
 .env
 __pycache__/
+server.log
+logging.conf

@@ -1,11 +1,15 @@
 import pifacedigitalio
+import logging, logging.config, yaml
 from requests import Session, Request
 from flask import Flask, jsonify, abort
 from time import sleep
 from os import environ
-from os.path import join, dirname
+from os.path import join, dirname, isfile
 from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
+
+if isfile('logging.conf'):
+    logging.config.dictConfig(yaml.load(open('logging.conf')))
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -83,13 +87,13 @@ def getOutputsState():
 
 
 def onPressHandler(event):
-    print("{0} - Input {1} is now on".format(str(datetime.now()), event.pin_num))
+    logging.info("Input {0} is now on".format(event.pin_num))
     if INPUT_WEBHOOK:
         notifyWebHooker(event.pin_num, 'on')
 
 
 def onReleaseHandler(event):
-    print("{0} - Input {1} is now off".format(str(datetime.now()), event.pin_num))
+    logging.info("Input {0} is now off".format(event.pin_num))
     if INPUT_WEBHOOK:
         notifyWebHooker(event.pin_num, 'off')
 
@@ -100,10 +104,10 @@ def notifyWebHooker(input_number, event):
     req = Request('GET', INPUT_WEBHOOK, params=payload).prepare()
     try:
         res = s.send(req)
-        print("Webhook has been notified at: {0}\nResponse: ({1}): {2}".format(
+        logging.info("Webhook has been notified at: {0}\nResponse: ({1}): {2}".format(
             req.url, res.status_code, res.content))
     except IOError as err:
-        print("Webhook request failed {0}\nError:{1}".format(req.url, err))
+        logging.error("Webhook request failed {0}\nError:{1}".format(req.url, err))
 
 
 '''
