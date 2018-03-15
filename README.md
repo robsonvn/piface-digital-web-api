@@ -7,6 +7,7 @@ A simple web interface to control your [PiFace Digital](http://www.piface.org.uk
 git clone https://github.com/robsonvn/piface-digital-web-api.git
 cd piface-digital-web-api
 cp .env.example .env
+pip install -r requirements.txt
 ```
 You can read more about Environment Variables [here](#environment-variables).
 ## Running
