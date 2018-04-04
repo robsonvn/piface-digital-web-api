@@ -20,7 +20,7 @@ python -m aiohttp.web -H 0.0.0.0 -P 80 app:init_func --verbose
 ## Running with Docker
 
 ```bash
-sudo docker run --privileged -it -d -p 80:80 piface
+sudo docker run --privileged -it -d -p 80:80 robsonvn/piface-digital-web-api
 ```
 
 ## Endpoints
