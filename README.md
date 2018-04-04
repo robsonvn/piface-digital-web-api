@@ -3,16 +3,25 @@
 A simple web interface to control your [PiFace Digital](http://www.piface.org.uk/products/piface_digital/) inputs and outputs written in Python.
 
 ## Setup
-```
+```bash
 git clone https://github.com/robsonvn/piface-digital-web-api.git
 cd piface-digital-web-api
 cp .env.example .env
 pip install -r requirements.txt
 ```
+
 You can read more about Environment Variables [here](#environment-variables).
 ## Running
 
-python -m aiohttp.web -H 0.0.0.0 -P 5000 app:init_func --verbose
+```bash
+python -m aiohttp.web -H 0.0.0.0 -P 80 app:init_func --verbose
+````
+
+## Running with Docker
+
+```bash
+sudo docker run --privileged -it -d -p 80:80 piface
+```
 
 ## Endpoints
 

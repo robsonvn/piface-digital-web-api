@@ -1,0 +1,6 @@
+aiohttp==3.0.9
+async-timeout==2.0.1
+python-dotenv==0.8.2
+requests==2.18.4
+PyYAML==3.12
+
