@@ -65,12 +65,12 @@ sudo docker run --privileged -it -d -p 80:80 robsonvn/piface-digital-web-api
 
 ### Flick output (/output/flick)
 ```
-  curl -X GET http://127.0.0.1:8080/output/flick?output=0&output=1
+  curl -X GET http://127.0.0.1:8080/output/flick?output=0&output=1&interval=0.1
 ```
 
 Response: the current device state
 
-*The default delay time is 1 second, but you can define a custom value in your .env file using* FLICK_SLEEP_INTERVAL
+*If interval parameter is not given, the default delay time is 1 second, but you can define a custom value in your .env file using* FLICK_SLEEP_INTERVAL
 
 ### Turn output on (/output/on)
 ```
