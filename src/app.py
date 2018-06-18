@@ -20,7 +20,7 @@ if isfile('logging.conf'):
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-FLICK_SLEEP_INTERVAL = int(environ.get("FLICK_SLEEP_INTERVAL") or 1)
+FLICK_SLEEP_INTERVAL = environ.get("FLICK_SLEEP_INTERVAL") or 1
 NUMBER_OF_INPUTS = int(environ.get("NUMBER_OF_INPUTS") or 8)
 NUMBER_OF_OUTPUTS = int(environ.get("NUMBER_OF_OUTPUTS") or 8)
 WEBHOOK_URL = environ.get("WEBHOOK_URL")
@@ -49,9 +49,11 @@ def flick_output_handler(request):
     return web.json_response(get_device_states())
 
 def flick_output_relay(request):
-    turn_relay_on(request)
-    sleep(FLICK_SLEEP_INTERVAL)
-    turn_relay_off(request)
+    #turn_relay_on(request)
+    interval = request.rel_url.query.get('interval')
+    print(interval)
+    #sleep(interval)
+    #turn_relay_off(request)
 
 
 def turn_relay_on(request):
