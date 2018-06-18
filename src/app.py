@@ -49,11 +49,10 @@ def flick_output_handler(request):
     return web.json_response(get_device_states())
 
 def flick_output_relay(request):
-    #turn_relay_on(request)
-    interval = request.rel_url.query.get('interval')
-    print(interval)
-    #sleep(interval)
-    #turn_relay_off(request)
+    turn_relay_on(request)
+    interval = float(request.rel_url.query.get('interval', FLICK_SLEEP_INTERVAL))
+    sleep(interval)
+    turn_relay_off(request)
 
 
 def turn_relay_on(request):
